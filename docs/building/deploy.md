@@ -47,6 +47,17 @@ Put the two contract ids into the app repo's configuration —
 STELLAR_IDENTITY=mykey STELLAR_NETWORK=testnet ./scripts/deploy.sh
 ```
 
+## Resuming a partial deploy
+
+If a run fails partway through, rerunning from scratch would deploy a second
+reputation contract. Instead, pass the ids that were already created so those
+steps are skipped:
+
+```bash
+REPUTATION_CONTRACT_ID=C... ./scripts/deploy.sh
+REPUTATION_CONTRACT_ID=C... CIRCLE_CONTRACT_ID=C... ./scripts/deploy.sh
+```
+
 The script only targets testnet networks. **Do not point it at mainnet** — these
 contracts are unaudited, and the [security posture](../contributing.md#security)
 is testnet-only.
